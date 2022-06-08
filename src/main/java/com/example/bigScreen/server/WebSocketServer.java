@@ -165,13 +165,16 @@ public class WebSocketServer {
      *发送自定
      *义消息
      **/
-    public static void sendInfo(String message, String userId) {
+    public static int sendInfo(String message, String userId) {
+        int i = 0;
         log.info("发送消息到:"+userId+"，报文:"+message);
         if(StringUtils.isNotBlank(userId) && webSocketMap.containsKey(userId)){
+            i = 1;
             webSocketMap.get(userId).sendMessage(message);
         }else{
             log.error("用户"+userId+",不在线！");
         }
+        return i;
     }
 
     /**
