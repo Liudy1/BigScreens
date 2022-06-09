@@ -1,0 +1,45 @@
+server:
+  port: 8080
+spring:
+  mvc:
+    servlet:
+      load-on-startup: 1
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.1.171:3306/big_screen?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: sukai.19960804
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+  web:
+    resources:
+      static-locations: classpath:/static/,file:${filePath}
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml
+
+swagger:
+  enabled: true
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+jwt:
+  secret: limoumou
+  tokenHeader: Authorization
+  tokenPrefix: Bearer
+  expiration: 86400
+  antMatchers: /swagger-resources/**,/swagger-ui.html,/v2/api-docs,/webjars/**,/doc.html
+
+logging:
+  config: classpath:log4j2.xml
+
+filePath: "E:\\projectFiles\\"
